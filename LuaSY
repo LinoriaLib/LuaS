@@ -10,107 +10,21 @@ print("Injecting into CoreGui...")
 wait(4)
 print("Injection successful")
 
+--GUI LuaSy
+-- Create GUI elements
+local LuaGUI = Instance.new("ScreenGui")
+LuaGUI.Name = "Lua"
+LuaGUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
-
-local elysian = Instance.new("ScreenGui")
-local Frame = Instance.new("Frame")
-local execute = Instance.new("TextButton")
-local clear = Instance.new("TextButton")
-local outputContainer = Instance.new("ScrollingFrame")
-local output = Instance.new("TextLabel")
-local TextLabel = Instance.new("TextLabel")
-local image = Instance.new("ImageLabel")
-local TextBox = Instance.new("TextBox")
-local elysian_2 = Instance.new("TextButton")
-local view = Instance.new("TextButton")
-local scriptlist = Instance.new("ScrollingFrame")
-local blue = Instance.new("TextButton")
-local infyield = Instance.new("TextButton")
-local skid = Instance.new("TextButton")
-local c00lgui = Instance.new("TextButton")
-local Dex = Instance.new("TextButton")
-
-local Lua = Instance.new("ScreenGui")
-Lua.Name = "Lua"
-Lua.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-
-
-Frame.Parent = Lua
+local Frame = Instance.new("Frame", LuaGUI)
 Frame.Active = true
 Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Frame.Position = UDim2.new(0.236403197, 0, 0.1433869, 0)
+Frame.Position = UDim2.new(0.236, 0, 0.143, 0)
 Frame.Size = UDim2.new(0, 627, 0, 381)
 Frame.Draggable = true
 
-execute.Name = "execute"
-execute.Parent = Frame
-execute.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-execute.Position = UDim2.new(0.0159489624, 0, 0.685039341, 0)
-execute.Size = UDim2.new(0, 137, 0, 27)
-execute.Font = Enum.Font.SourceSans
-execute.Text = "Execute"
-execute.TextColor3 = Color3.fromRGB(0, 0, 0)
-execute.TextSize = 14.000
-execute.MouseButton1Click:Connect(function()
-	local code = TextBox.Text
-	if code and code ~= "" then
-		local success, err = pcall(function()
-			loadstring(code)()
-		end)
-		if not success then
-			output.Text = "Error: " .. err
-		else
-			output.Text = "script executed successfully!"
-		end
-	else
-		output.Text = "Please enter a script to execute."
-	end
-end)
-
-clear.Name = "clear"
-clear.Parent = Frame
-clear.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-clear.Position = UDim2.new(0.0159489624, 0, 0.790026248, 0)
-clear.Size = UDim2.new(0, 137, 0, 23)
-clear.Font = Enum.Font.SourceSans
-clear.Text = "Clear"
-clear.TextColor3 = Color3.fromRGB(0, 0, 0)
-clear.TextSize = 14.000
-clear.MouseButton1Click:Connect(function()
-	TextBox.Text = ""
-	output.Text = "Output cleared."
-end)
-
-outputContainer.Parent = Frame
-outputContainer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-outputContainer.Position = UDim2.new(0.248803824, 0, 0.669291317, 0)
-outputContainer.Size = UDim2.new(0, 326, 0, 116)
-outputContainer.ScrollBarThickness = 13
-outputContainer.CanvasSize = UDim2.new(0, 0, 0, 200)
-outputContainer.VerticalScrollBarInset = Enum.ScrollBarInset.Always
-
-output.Parent = outputContainer
-output.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-output.Size = UDim2.new(1, 0, 1, 0)
-output.Font = Enum.Font.SourceSans
-output.Text = "Authenticating..."
-output.TextColor3 = Color3.fromRGB(0, 0, 0)
-output.TextSize = 14.000
-output.TextWrapped = true
-output.TextXAlignment = Enum.TextXAlignment.Left
-output.TextYAlignment = Enum.TextYAlignment.Top
-
-TextLabel.Parent = Frame
-TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.BorderSizePixel = 0
-TextLabel.Position = UDim2.new(0.047846891, 0, 0, 0)
-TextLabel.Size = UDim2.new(0, 597, 0, 22)
-TextLabel.Font = Enum.Font.SourceSans
-TextLabel.Text = "Lua"
-TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel.TextSize = 14.000
-TextLabel.TextXAlignment = Enum.TextXAlignment.Left
-
+-- Create the image element
+local image = Instance.new("ImageLabel")
 image.Name = "image"
 image.Parent = Frame
 image.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -118,112 +32,92 @@ image.BorderSizePixel = 0
 image.Size = UDim2.new(0, 23, 0, 22)
 image.Image = "rbxassetid://3203186317"
 
-TextBox.Parent = Frame
+-- Input TextBox
+local TextBox = Instance.new("TextBox", Frame)
 TextBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextBox.Position = UDim2.new(0.0159489624, 0, 0.144356951, 0)
-TextBox.Size = UDim2.new(0, 464, 0, 193)
+TextBox.Position = UDim2.new(0.016, 0,0.144, 0)
+TextBox.Size = UDim2.new(0, 607,0, 193)
 TextBox.ClearTextOnFocus = false
 TextBox.Font = Enum.Font.SourceSans
 TextBox.MultiLine = true
 TextBox.Text = "Press 'Execute' to run scripts..."
 TextBox.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextBox.TextSize = 14.000
+TextBox.TextSize = 14
 TextBox.TextXAlignment = Enum.TextXAlignment.Left
 TextBox.TextYAlignment = Enum.TextYAlignment.Top
+TextBox.PlaceholderText = "Enter your Lua code here..."
 
-elysian_2.Name = "LuaS"
-elysian_2.Parent = Frame
-elysian_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-elysian_2.BorderSizePixel = 0
-elysian_2.Position = UDim2.new(0, 0, 0.076115489, 0)
-elysian_2.Size = UDim2.new(0, 88, 0, 18)
-elysian_2.Font = Enum.Font.SourceSans
-elysian_2.Text = "LuaS"
-elysian_2.TextColor3 = Color3.fromRGB(0, 0, 0)
-elysian_2.TextSize = 14.000
+-- Output Label
+local outputContainer = Instance.new("ScrollingFrame", Frame)
+outputContainer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+outputContainer.Position = UDim2.new(0.249, 0, 0.669, 0)
+outputContainer.Size = UDim2.new(0, 326, 0, 116)
+outputContainer.ScrollBarThickness = 13
+outputContainer.CanvasSize = UDim2.new(0, 0, 0, 200)
 
-view.Name = "view"
-view.Parent = Frame
-view.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-view.BorderSizePixel = 0
-view.Position = UDim2.new(0.140350878, 0, 0.076115489, 0)
-view.Size = UDim2.new(0, 88, 0, 18)
-view.Font = Enum.Font.SourceSans
-view.Text = "View"
-view.TextColor3 = Color3.fromRGB(0, 0, 0)
-view.TextSize = 14.000
-view.TextXAlignment = Enum.TextXAlignment.Left
+local output = Instance.new("TextLabel", outputContainer)
+output.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+output.Size = UDim2.new(1, 0, 1, 0)
+output.Font = Enum.Font.SourceSans
+output.Text = "Authenticating..."
+output.TextColor3 = Color3.fromRGB(0, 0, 0)
+output.TextSize = 14
+output.TextWrapped = true
+output.TextXAlignment = Enum.TextXAlignment.Left
+output.TextYAlignment = Enum.TextYAlignment.Top
 
-scriptlist.Name = "scriptlist"
-scriptlist.Parent = Frame
-scriptlist.Active = true
-scriptlist.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-scriptlist.Position = UDim2.new(0.768740058, 0, 0.144356951, 0)
-scriptlist.Size = UDim2.new(0, 145, 0, 316)
-scriptlist.HorizontalScrollBarInset = Enum.ScrollBarInset.Always
-scriptlist.ScrollBarThickness = 13
-
-infyield.Name = "LuaS"
-infyield.Parent = scriptlist
-infyield.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-infyield.Position = UDim2.new(0, 0, -0.000480845018, 0)
-infyield.Size = UDim2.new(0, 132, 0, 23)
-infyield.Font = Enum.Font.SourceSans
-infyield.Text = "Infinite Yield Modded"
-infyield.TextColor3 = Color3.fromRGB(0, 0, 0)
-infyield.TextSize = 14.000
-infyield.MouseButton1Click:Connect(function()
-	loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Infinite-yield-Game-commands-etc-14971"))()
+-- Execute Button
+local execute = Instance.new("TextButton", Frame)
+execute.Name = "Execute"
+execute.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+execute.Position = UDim2.new(0.016, 0, 0.685, 0)
+execute.Size = UDim2.new(0, 137, 0, 27)
+execute.Font = Enum.Font.SourceSans
+execute.Text = "Execute"
+execute.TextColor3 = Color3.fromRGB(0, 0, 0)
+execute.TextSize = 14
+execute.MouseButton1Click:Connect(function()
+	local code = TextBox.Text
+	if code and code ~= "" then
+		local success, err = pcall(function()
+			loadstring(code)()
+		end)
+		output.Text = success and "Script executed successfully!" or "Error: " .. err
+	else
+		output.Text = "Please enter a script to execute."
+	end
 end)
 
-skid.Name = "skid"
-skid.Parent = scriptlist
-skid.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-skid.Position = UDim2.new(0, 0, 0.0297028814, 0)
-skid.Size = UDim2.new(0, 132, 0, 23)
-skid.Font = Enum.Font.SourceSans
-skid.Text = "1x1x1x1 Skid GUI"
-skid.TextColor3 = Color3.fromRGB(0, 0, 0)
-skid.TextSize = 14.000
-skid.MouseButton1Click:Connect(function()
-	loadstring(game:HttpGet("https://rawscripts.net/raw/Natural-Disaster-Survival-1X1X1X1-GUI-PLS-LIKE-11504"))()
+-- Clear Button
+local clear = Instance.new("TextButton", Frame)
+clear.Name = "Clear"
+clear.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+clear.Position = UDim2.new(0.016, 0, 0.79, 0)
+clear.Size = UDim2.new(0, 137, 0, 23)
+clear.Font = Enum.Font.SourceSans
+clear.Text = "Clear"
+clear.TextColor3 = Color3.fromRGB(0, 0, 0)
+clear.TextSize = 14
+clear.MouseButton1Click:Connect(function()
+	TextBox.Text = ""
+	output.Text = "Output cleared."
 end)
 
-c00lgui.Name = "c00lgui"
-c00lgui.Parent = scriptlist
-c00lgui.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-c00lgui.Position = UDim2.new(0, 0, 0.0598866083, 0)
-c00lgui.Size = UDim2.new(0, 132, 0, 23)
-c00lgui.Font = Enum.Font.SourceSans
-c00lgui.Text = "c00lgui"
-c00lgui.TextColor3 = Color3.fromRGB(0, 0, 0)
-c00lgui.TextSize = 14.000
-c00lgui.MouseButton1Click:Connect(function()
-	loadstring(game:HttpGet("https://rawscripts.net/raw/RetroStudio-ssssssssssssssss-11010"))()
-end)
+-- Additional Elements
+local TextLabel = Instance.new("TextLabel", Frame)
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BorderSizePixel = 0
+TextLabel.Position = UDim2.new(0.048, 0, 0, 0)
+TextLabel.Size = UDim2.new(0, 597, 0, 22)
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.Text = "Lua"
+TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.TextSize = 14
+TextLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-Dex.Name = "Dex"
-Dex.Parent = scriptlist
-Dex.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Dex.Position = UDim2.new(0, 0, 0.0900703371, 0)
-Dex.Size = UDim2.new(0, 132, 0, 23)
-Dex.Font = Enum.Font.SourceSans
-Dex.Text = "Dex Explorer"
-Dex.TextColor3 = Color3.fromRGB(0, 0, 0)
-Dex.TextSize = 14.000
-Dex.MouseButton1Click:Connect(function()
-	loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Dark-Dex-Explorer-19291"))()
-end)
+local HttpService = game:GetService("HttpService")
+local url = "https://api.example.com/endpoint"
 
-blue.Name = "blue"
-blue.Parent = scriptlist
-blue.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-blue.Position = UDim2.new(0, 0, 0.120254062, 0)
-blue.Size = UDim2.new(0, 132, 0, 23)
-blue.Font = Enum.Font.SourceSans
-blue.Text = "1x1x1x1 Blue GUI"
-blue.TextColor3 = Color3.fromRGB(0, 0, 0)
-blue.TextSize = 14.000
-blue.MouseButton1Click:Connect(function()
-	loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-1x1x1x1-blue-gui-21876"))()
-end)
+
+-- Finish GUI script setup
+print("GUI loaded successfully!") 
