@@ -1,0 +1,73 @@
+-- Create Lighting Effects (RTX-Like Visuals)
+local lighting = game:GetService("Lighting")
+
+-- Clear existing lighting settings
+lighting:ClearAllChildren()
+
+-- Set lighting technology to Future (best for realistic lighting)
+lighting.Technology = Enum.Technology.Future
+
+-- Set ambient lighting colors
+lighting.Ambient = Color3.fromRGB(60, 60, 60)
+lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+
+-- Enable global shadows and environment effects
+lighting.GlobalShadows = true
+lighting.EnvironmentDiffuseScale = 1
+lighting.EnvironmentSpecularScale = 1
+lighting.ClockTime = 15.5 -- Late afternoon lighting
+lighting.GeographicLatitude = 35 -- Adjust sun angle
+
+-- Sun Rays effect
+local sunRays = Instance.new("SunRaysEffect")
+sunRays.Intensity = 0.3
+sunRays.Spread = 0.7
+sunRays.Parent = lighting
+
+-- Bloom effect for glowing highlights
+local bloom = Instance.new("BloomEffect")
+bloom.Intensity = 1
+bloom.Threshold = 0.95
+bloom.Size = 24
+bloom.Parent = lighting
+
+-- Color Correction for tone adjustment
+local colorCorrection = Instance.new("ColorCorrectionEffect")
+colorCorrection.TintColor = Color3.fromRGB(255, 245, 220)
+colorCorrection.Brightness = 0.05
+colorCorrection.Contrast = 0.1
+colorCorrection.Saturation = 0.15
+colorCorrection.Parent = lighting
+
+-- Atmosphere for realistic sky haze
+local atmosphere = Instance.new("Atmosphere")
+atmosphere.Density = 0.35
+atmosphere.Offset = 0.25
+atmosphere.Glare = 0.15
+atmosphere.Haze = 1.5
+atmosphere.Color = Color3.fromRGB(199, 220, 255)
+atmosphere.Decay = Color3.fromRGB(96, 120, 160)
+atmosphere.Parent = lighting
+
+-- Skybox setup (realistic sky)
+local sky = Instance.new("Sky")
+sky.SkyboxBk = "rbxassetid://13337824740"
+sky.SkyboxDn = "rbxassetid://13337826182"
+sky.SkyboxFt = "rbxassetid://13337827606"
+sky.SkyboxLf = "rbxassetid://13337828817"
+sky.SkyboxRt = "rbxassetid://13337830160"
+sky.SkyboxUp = "rbxassetid://13337831417"
+sky.MoonAngularSize = 11
+sky.SunAngularSize = 21
+sky.SunTextureId = "rbxassetid://13337837502"
+sky.MoonTextureId = "rbxassetid://13337838788"
+sky.StarCount = 3000
+sky.Parent = lighting
+
+-- Optional: Add depth of field for cinematic blur
+local dof = Instance.new("DepthOfFieldEffect")
+dof.FarIntensity = 0.1
+dof.FocusDistance = 50
+dof.InFocusRadius = 15
+dof.NearIntensity = 0.3
+dof.Parent = lighting
